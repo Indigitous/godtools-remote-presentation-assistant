@@ -1,3 +1,5 @@
+var additional_css = "nav { display: none !important; }";
+
 $.get("http://knowgod.com/en/kgp/1").success(function(response) {
 
   // Fetch html
@@ -7,5 +9,8 @@ $.get("http://knowgod.com/en/kgp/1").success(function(response) {
   // Fetch css
   var knowgod_css = response.match(/href=\"(\/css\/main([^\s]*.css))\"/)[1];
   $('<link href="http://knowgod.com' + knowgod_css + '" rel="stylesheet">').prependTo('#view');
+
+  // Additional css
+  $('<style type="text/css">' + additional_css + '</style>').prependTo('#view');
 
 });
