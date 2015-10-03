@@ -83,6 +83,7 @@ Presenter.initialize = function() {
   Presenter.current_presentation = Presenter.session_data.current_presentation || 'kgp';
   Presenter.current_page = Presenter.session_data.current_page || '';
   Presenter.current_language = Presenter.session_data.current_language || 'en';
+  Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
   Presenter.$language_dropdown = $('#language_list');
   Presenter.$presentation_dropdown = $('#presentation_list');
   Presenter.$presentation_link = $('#presentation_link');
@@ -98,12 +99,13 @@ Presenter.initialize = function() {
     Presenter.current_page = '';
     Presenter.current_presentation = Presenter.$presentation_dropdown.val();
     Presenter.current_language = Presenter.$language_dropdown.val();
+    Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
     $next_btn.show();
     Presenter.send_session();
-  })
+  });
 
   $next_btn.on('click', function() {
-    var cur_pres = Presenter.presenter_data.presentations[Presenter.current_presentation];
+    var cur_pres = Presenter.current_presentation_data;
     if (Presenter.current_page < cur_pres.num_pages) {
       ++Presenter.current_page;
       $prev_btn.show();
@@ -112,10 +114,10 @@ Presenter.initialize = function() {
       }
       Presenter.send_session();
     }
-  })
+  });
 
   $prev_btn.on('click', function() {
-    var cur_pres = Presenter.presenter_data.presentations[Presenter.current_presentation];
+    var cur_pres = Presenter.current_presentation_data;
     if (Presenter.current_page > 0) {
       --Presenter.current_page;
       $next_btn.show();
@@ -125,7 +127,10 @@ Presenter.initialize = function() {
       }
       Presenter.send_session();
     }
-  })
+  });
+
+  Presenter.current_page < Presenter.current_presentation_data.num_pages ? $next_btn.show() : $next_btn.hide();
+  Presenter.current_page > 0 ? $prev_btn.show() : $prev_btn.hide();
 }
 
 Presenter.send_session = function() {
