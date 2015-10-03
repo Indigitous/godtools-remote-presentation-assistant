@@ -43,7 +43,7 @@ function send_data() {
 function get_session_data() {
   var d = $.Deferred();
   fb.child(session_id).once('value', function(snapshot) {
-    Presenter.session_data = snapshot.val();
+    Presenter.session_data = snapshot.val() || {};
     d.resolve();
   });
   return d;

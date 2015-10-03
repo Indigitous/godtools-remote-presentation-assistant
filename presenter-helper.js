@@ -129,7 +129,8 @@ Presenter.initialize = function() {
     }
   });
 
-  Presenter.current_page < Presenter.current_presentation_data.num_pages ? $next_btn.show() : $next_btn.hide();
+  // Initialize next and previous buttons.
+  Presenter.current_page != '' && (Presenter.current_page < Presenter.current_presentation_data.num_pages) ? $next_btn.show() : $next_btn.hide();
   Presenter.current_page > 0 ? $prev_btn.show() : $prev_btn.hide();
 }
 
