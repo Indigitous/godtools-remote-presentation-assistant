@@ -1,6 +1,11 @@
+var session_id = get_parameter_by_name('session_id');
+
+if(typeof(session_id) != 'string' || session_id.length == 0) {
+  window.location = 'presenter.html?session_id=' + generate_session_guid();
+}
+
 var viewer_url = 'http://indigitous.github.io/godtools-remote-presentation-assistant/viewer.html'
 
-var session_id = get_parameter_by_name('session_id');
 
 $(document).ready(function() {
   var url = 'http://knowgod.com/en/fourlaws/1/';
