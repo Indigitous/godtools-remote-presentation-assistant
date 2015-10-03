@@ -80,26 +80,26 @@ Presenter.populate_dropdowns = function() {
 }
 
 Presenter.initialize = function() {
-  Presenter.current_presentation = 'kgp';
-  Presenter.current_page = '';
-  Presenter.current_language = 'en';
+  Presenter.current_presentation = Presenter.session_data.current_presentation || 'kgp';
+  Presenter.current_page = Presenter.session_data.current_page || '';
+  Presenter.current_language = Presenter.session_data.current_language || 'en';
   Presenter.$language_dropdown = $('#language_list');
   Presenter.$presentation_dropdown = $('#presentation_list');
   Presenter.$presentation_link = $('#presentation_link');
+  Presenter.$presentation_link.text(Presenter.session_data.knowgod_url);
 
   var $next_btn = $('#next_btn'),
     $prev_btn = $('#prev_btn'),
     $load_btn = $('#load_btn');
 
   Presenter.populate_dropdowns();
-  Presenter.set_url();
 
   $load_btn.on('click', function() {
     Presenter.current_page = '';
     Presenter.current_presentation = Presenter.$presentation_dropdown.val();
     Presenter.current_language = Presenter.$language_dropdown.val();
     $next_btn.show();
-    Presenter.set_url();
+    Presenter.send_session();
   })
 
   $next_btn.on('click', function() {
@@ -110,7 +110,7 @@ Presenter.initialize = function() {
       if (Presenter.current_page == cur_pres.num_pages) {
         $next_btn.hide();
       }
-      Presenter.set_url();
+      Presenter.send_session();
     }
   })
 
@@ -123,13 +123,18 @@ Presenter.initialize = function() {
         $prev_btn.hide();
         Presenter.current_page = '';
       }
-      Presenter.set_url();
+      Presenter.send_session();
     }
   })
 }
 
-Presenter.set_url = function() {
+Presenter.send_session = function() {
   var url = 'http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + Presenter.current_page;
-  send_knowgod_url(session_id, url);
+
+  Presenter.session_data.current_presentation = Presenter.current_presentation || 'kgp';
+  Presenter.session_data.current_page = Presenter.current_page || '';
+  Presenter.session_data.current_language = Presenter.current_language || 'en';
+  Presenter.session_data.knowgod_url = url;
+  send_data();
   Presenter.$presentation_link.text(url);
 }

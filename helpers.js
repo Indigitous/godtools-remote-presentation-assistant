@@ -36,3 +36,15 @@ function send_knowgod_url(session_id, url) {
   var response = fb.child(session_id).set(data);
 }
 
+function send_data() {
+  fb.child(session_id).set(Presenter.session_data);
+}
+
+function get_session_data() {
+  var d = $.Deferred();
+  fb.child(session_id).once('value', function(snapshot) {
+    Presenter.session_data = snapshot.val();
+    d.resolve();
+  });
+  return d;
+}
