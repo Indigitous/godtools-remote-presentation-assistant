@@ -26,9 +26,9 @@ function generate_session_guid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
 }
 
-function send_knowgod_url(session, url) {
-  data = {};
-  data[session] = { knowgod_url: url };
-  fb.set(data);
+function send_knowgod_url(session_id, url) {
+  var data = { knowgod_url: url };
+  var response = fb.child(session_id).set(data);
+  response.key();
 }
 
