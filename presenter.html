@@ -3,6 +3,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
     <script src="firebase.js"></script>
     <script src="helpers.js"></script>
     <script src="presenter.js"></script>
@@ -12,5 +13,8 @@
   <select id="language_list"></select>
   <btn>
 
-  <input id="viewer_link" type="text">
+  <input id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git">
+  <button id="copy_viewer_link_button" data-clipboard-target="#viewer_link">
+    <img src="assets/clippy.svg" alt="Copy to clipboard">
+  </button>
 </html>

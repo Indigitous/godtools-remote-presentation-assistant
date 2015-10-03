@@ -9,10 +9,12 @@ var viewer_url = 'http://indigitous.github.io/godtools-remote-presentation-assis
 
 $(document).ready(function() {
   var url = 'http://knowgod.com/en/fourlaws/1/';
-  
+
   Presenter.populate_dropdowns();
 
   $('#viewer_link').val(viewer_url + '?session_id=' + session_id);
+
+  new Clipboard('#copy_viewer_link_button');
 
   send_knowgod_url(session_id, url);
 });
