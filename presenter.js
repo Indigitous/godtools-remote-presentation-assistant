@@ -7,3 +7,12 @@ var test = fb.set({
     knowgod_url: "http://knowgod.com/en/kgp/1/"
   }
 });
+
+function send_knowgod_url(url) {
+  var test = fb.set({
+    "xyz":
+    {
+      knowgod_url: url
+    }
+  });
+}
