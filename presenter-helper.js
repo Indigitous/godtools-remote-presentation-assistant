@@ -132,6 +132,13 @@ Presenter.initialize = function() {
   // Initialize next and previous buttons.
   Presenter.current_page != '' && (Presenter.current_page < Presenter.current_presentation_data.num_pages) ? $next_btn.show() : $next_btn.hide();
   Presenter.current_page > 0 ? $prev_btn.show() : $prev_btn.hide();
+
+  viewer_url = viewer_url + '?session_id=' + session_id;
+  $('#viewer_link').val(viewer_url);
+
+  new Clipboard('#copy_viewer_link_button');
+
+  $('<iframe src="' + viewer_url + '" height="900" width="768" frameborder="0" allowfullscreen=""></iframe>').appendTo($('html'));  
 }
 
 Presenter.send_session = function() {
