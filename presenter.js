@@ -7,14 +7,10 @@ if(typeof(session_id) != 'string' || session_id.length == 0) {
 
 var viewer_url = 'http://indigitous.github.io/godtools-remote-presentation-assistant/viewer.html'
 
-$(document).ready(function() {
-  var url = 'http://knowgod.com/en/fourlaws/1/';
-  
+$(document).ready(function() {  
   Presenter.initialize();
 
   $('#viewer_link').val(viewer_url + '?session_id=' + session_id);
 
   new Clipboard('#copy_viewer_link_button');
-
-  send_knowgod_url(session_id, url);
 });

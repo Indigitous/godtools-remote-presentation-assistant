@@ -92,6 +92,7 @@ Presenter.initialize = function() {
     $load_btn = $('#load_btn');
 
   Presenter.populate_dropdowns();
+  Presenter.set_url();
 
   $load_btn.on('click', function() {
     Presenter.current_page = '';
