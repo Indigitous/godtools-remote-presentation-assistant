@@ -9,7 +9,7 @@ function load_view_from_knowgod(url, additional_css) {
   $.get(url).success(function(response) {
 
     // Fetch html
-    var knowgod_html = $(response).find('article').first();
+    var knowgod_html = $(response).find('main').first();
     $('#view').html(knowgod_html);
 
     // Fetch css
