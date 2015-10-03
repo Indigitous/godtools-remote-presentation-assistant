@@ -1,7 +1,5 @@
 var additional_css = "nav { display: none !important; }";
 
-var fb = new Firebase('https://blinding-fire-1510.firebaseio.com/');
-
 var session = fb.child('xyz');
 
 session.on('value', function(snapshot) {
