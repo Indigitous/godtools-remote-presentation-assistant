@@ -1,3 +1,10 @@
+function get_parameter_by_name(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function load_view_from_knowgod(url, additional_css) {
   $.get(url).success(function(response) {
 
@@ -20,11 +27,8 @@ function generate_session_guid() {
 }
 
 function send_knowgod_url(session, url) {
-  var test = fb.set({
-    session: {
-      knowgod_url: url
-    }
-  });
+  data = {};
+  data[session] = { knowgod_url: url };
+  fb.set(data);
 }
-
 
