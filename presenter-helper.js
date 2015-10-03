@@ -1,12 +1,44 @@
 Presenter.presenter_data = {
-  languages: {
-    en: {
-      display: 'English'
-    },
-    fr: {
-      display: 'français'
-    }
-  },
+  languages: [
+    ['en', 'English'],
+    ['af', 'Afrikaans'],
+    ['id', 'Bahasa Indonesia (Indonesian)'],
+    ['ms', 'Bahasa Melayu (Malay)'],
+    ['et', 'Eesti (Estonian)'],
+    ['es', 'Español; Castellano (Spanish; Castilian)'],
+    ['sw', 'Kiswahili (Swahili)'],
+    ['lt', 'Lietuvių (Lithuanian)'],
+    ['nso', 'Northern Sotho'],
+    ['pt', 'Português (Portuguese)'],
+    ['ro', 'Română (Romanian)'],
+    ['sq', 'Shqip (Albanian)'],
+    ['vi', 'Tiếng Việt (Vietnamese)'],
+    ['tr', 'Türkçe (Turkish)'],
+    ['tgl', 'Wikang Tagalog (Tagalog)'],
+    ['sn', 'chiShona (Shona)'],
+    ['fr', 'français (French)'],
+    ['hu', 'magyar (Hungarian)'],
+    ['pl', 'polski (Polish)'],
+    ['sk', 'slovenčina (Slovak)'],
+    ['cs', 'čeština (Czech)'],
+    ['el', 'Ελληνικά (Greek, Modern (1453-))'],
+    ['bg', 'Български (Bulgarian)'],
+    ['mk', 'Македонски (Macedonian)'],
+    ['mn-mn', 'Монгол (Mongolian)'],
+    ['ru', 'русский (Russian)'],
+    ['uk', 'українська (Ukrainian)'],
+    ['hy', 'Հայերեն (Armenian)'],
+    ['ar', 'العربية (Arabic)'],
+    ['ta', 'தமிழ் (Tamil)'],
+    ['te-in', 'తెలుగు (Telugu)'],
+    ['si', 'සිංහල (Sinhala; Sinhalese)'],
+    ['th', 'ไทย (Thai)'],
+    ['bo', 'བོད་ཡིག (Tibetan)'],
+    ['am-et', 'አማርኛ (Amharic)'],
+    ['zh', '汉语 (Chinese)'],
+    ['zh-tw', '漢語 (Chinese)'],
+    ['ko', '한국어 (Korean)']
+  ],
   presentations: {
     kgp: {
       title: 'Knowing God Personally',
@@ -24,13 +56,13 @@ Presenter.presenter_data = {
 }
 
 Presenter.populate_dropdowns = function() {
-  var languages = _.pairs(Presenter.presenter_data.languages),
+  var languages = Presenter.presenter_data.languages,
     presentations = _.pairs(Presenter.presenter_data.presentations),
     value, display;
     
   languages.forEach(function(language) {
     value = language[0];
-    display = language[1].display;
+    display = language[1];
     Presenter.$language_dropdown
       .append($("<option></option>")
       .attr("value", value)
@@ -95,6 +127,8 @@ Presenter.initialize = function() {
   })
 }
 
-Presenter.set_url = function(url) {
-  Presenter.$presentation_link.text('http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + Presenter.current_page);
+Presenter.set_url = function() {
+  var url = 'http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + Presenter.current_page;
+  send_knowgod_url(session_id, url);
+  Presenter.$presentation_link.text(url);
 }

@@ -14,5 +14,7 @@ $(document).ready(function() {
 
   $('#viewer_link').val(viewer_url + '?session_id=' + session_id);
 
+  new Clipboard('#copy_viewer_link_button');
+
   send_knowgod_url(session_id, url);
 });
