@@ -19,6 +19,11 @@ function load_view_from_knowgod(url, additional_css) {
     // Additional css
     $('<style type="text/css">' + additional_css + '</style>').prependTo('#view');
 
+    // Fix images
+    $('#view').find('img').toArray().forEach(function(img) {
+      $(img).attr('src', 'http://knowgod.com' + $(img).attr('src'));
+    });
+
   });
 }
 

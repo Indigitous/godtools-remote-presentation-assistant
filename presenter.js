@@ -8,7 +8,7 @@ if(typeof(session_id) != 'string' || session_id.length == 0) {
 var viewer_url = 'http://indigitous.github.io/godtools-remote-presentation-assistant/viewer.html'
 
 $(document).ready(function() {
-  var url = 'http://knowgod.com/en/fourlaws/1/';
+  var url = 'http://knowgod.com/en/fourlaws/3/';
 
   Presenter.populate_dropdowns();
 
