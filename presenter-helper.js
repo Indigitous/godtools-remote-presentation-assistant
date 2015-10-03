@@ -81,7 +81,7 @@ Presenter.populate_dropdowns = function() {
 
 Presenter.initialize = function() {
   Presenter.current_presentation = 'kgp';
-  Presenter.current_page = 0;
+  Presenter.current_page = '';
   Presenter.current_language = 'en';
   Presenter.$language_dropdown = $('#language_list');
   Presenter.$presentation_dropdown = $('#presentation_list');
