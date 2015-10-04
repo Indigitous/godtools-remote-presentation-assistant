@@ -15,65 +15,50 @@
   </head>
 
   <body>
+    <div id="presentation_link" style="display:none;"></div>
+    <br>
+
     <div class="container-fluid">
+
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <br>
-          <div class="panel panel-primary">
-            <div class="panel-heading"><h3 class="panel-title">Presentation Controls</h3></div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <label>Booklet:</label>
-                      <select class="form-control" id="presentation_list"></select>
-                    </div>
-                    <div class="form-group">
-                      <label>Language:</label>
-                      <select class="form-control" id="language_list"></select>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <span id="prev_btn" style="display:none;" class="btn btn-default">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    Prev
-                  </span>
-                  <span id="next_btn" class="btn btn-primary">
-                    Next
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                  </span>
-                </div>
-              </div>
-              <div id="presentation_link" style="display:none;"></div>
-              <br>
-              <div class="row">
-                <div class="col-md-12">
-                  <label for="viewer_link">Presentation Link:</label>
-                  <div class="input-group">
-                    <input class="form-control" id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git" behaviour="select-on-focus">
-                    <span class="input-group-btn">
-                      <button id="copy_viewer_link_button" class="btn btn-default" data-clipboard-target="#viewer_link">
-                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-                        Copy
-                      </button>
-                    </span>
-                  </div>
-                  <i class="text-muted">Copy this link and send it to your friend!</i>
-                </div>
-              </div>
+        <div class="col-md-6 text-muted">
+          <form class="form-inline">
+            <label for="viewer_link">Presentation Link:</label>
+            <div class="input-group">
+              <input class="form-control" id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git" behaviour="select-on-focus">
+              <span class="input-group-btn">
+                <button id="copy_viewer_link_button" class="btn btn-default" data-clipboard-target="#viewer_link">
+                  <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+                  Copy
+                </button>
+              </span>
             </div>
-          </div>
+            <i class="text-muted">Copy this link and send it to your friend!</i>
+          </form>
+        </div>
+
+        <div class="col-md-6 text-muted">
+          <form class="form-inline">
+            <div class="form-group">
+              <label>Booklet:</label>
+              <select class="form-control" id="presentation_list"></select>
+            </div>
+            <div class="form-group">
+              <label>Language:</label>
+              <select class="form-control" id="language_list"></select>
+            </div>
+          </form>
         </div>
       </div>
+
+      <br>
 
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Presentation Tips</h3></div>
+            <div class="panel-heading">
+              <h3 class="panel-title" style="padding: 7.5px 0 7.5px 0;">Presentation Tips</h3>
+            </div>
             <div class="panel-body">
               <div id="coaching_content">
                 Loading...
@@ -82,8 +67,22 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="panel panel-success">
-            <div class="panel-heading"><h3 class="panel-title">Presentation Preview - this is what your friend sees</h3></div>
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                Presentation Preview - this is what your friend sees
+              </h3>
+              <div class="pull-right">
+                <span id="prev_btn" style="display:none;" class="btn btn-default">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  Prev
+                </span>
+                <span id="next_btn" class="btn btn-default">
+                  Next
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </div>
+            </div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-4by3">
                 <div id="presentation_preview">
