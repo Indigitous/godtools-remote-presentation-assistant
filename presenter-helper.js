@@ -176,7 +176,7 @@ Presenter.initialize = function() {
 
   new Clipboard('#copy_viewer_link_button');
 
-  $('<iframe src="' + viewer_url + '" height="900" width="768" frameborder="0" allowfullscreen=""></iframe>').appendTo($('html'));  
+  $('#presentation_preview').html('<iframe src="' + viewer_url + '" height="900" width="768" frameborder="0" allowfullscreen=""></iframe>');
 }
 
 Presenter.update = function() {
