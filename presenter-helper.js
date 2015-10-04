@@ -156,8 +156,6 @@ Presenter.initialize = function() {
   viewer_url = viewer_url + '?session_id=' + session_id;
   $('#viewer_link').val(viewer_url);
 
-  new Clipboard('#copy_viewer_link_button');
-
   // Update the view based on the initialization and send the update to the viewer.
   Presenter.update();
 
@@ -167,7 +165,7 @@ Presenter.initialize = function() {
 Presenter.update = function() {
   // Update coaching content
   Presenter.$coaching_content.html(Presenter.current_presentation_data.coaching_content[Presenter.current_page]);
-  
+
   // Initialize next and previous buttons.
   Presenter.current_page < Presenter.current_presentation_data.num_pages ? Presenter.$next_btn.show() : Presenter.$next_btn.hide();
   Presenter.current_page > 0 ? Presenter.$prev_btn.show() : Presenter.$prev_btn.hide();
@@ -186,7 +184,7 @@ Presenter.send_session = function() {
   Presenter.session_data.knowgod_url = url;
 
   send_data();
-  
+
   Presenter.$presentation_link.text(url);
 }
 
