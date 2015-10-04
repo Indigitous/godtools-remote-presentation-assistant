@@ -48,3 +48,9 @@ function get_session_data() {
   });
   return d;
 }
+
+$(document).ready(function() {
+  $('[behaviour="select-on-focus"]').on('focus', function() {
+    $(this).select();
+  });
+});
