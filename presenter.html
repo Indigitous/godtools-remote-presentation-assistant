@@ -6,6 +6,8 @@
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="viewer.css"></link>
     <script src="firebase.js"></script>
     <script src="helpers.js"></script>
     <script src="presenter.js"></script>
@@ -23,8 +25,18 @@
               <div class="row">
                 <div class="col-md-12">
                   <label>Currently presenting:</label>
-                  <select id="presentation_list"></select>
-                  <select id="language_list"></select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <select class="form-control" id="presentation_list"></select>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control" id="language_list"></select>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div class="row">
@@ -46,10 +58,11 @@
                 <div class="col-md-12">
                   <label for="viewer_link">Presentation Link:</label>
                   <div class="input-group">
-                    <input class="form-control" id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git">
+                    <input class="form-control" id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git" behaviour="select-on-focus">
                     <span class="input-group-btn">
                       <button id="copy_viewer_link_button" class="btn btn-default" data-clipboard-target="#viewer_link">
-                        <img src="assets/clippy.svg" alt="Copy to clipboard">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+                        Copy
                       </button>
                     </span>
                   </div>
@@ -67,18 +80,18 @@
             <div class="panel-heading"><h3 class="panel-title">Presentation Tips:</h3></div>
             <div class="panel-body">
               <div id="coaching_content">
-                Coaching content
+                Loading...
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="panel panel-default">
+          <div class="panel panel-success">
             <div class="panel-heading"><h3 class="panel-title">Presentation Preview - this is what your friend sees:</h3></div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-4by3">
                 <div id="presentation_preview">
-                  Presentation preview
+                  Loading...
                 </div>
               </div>
             </div>

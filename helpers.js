@@ -24,6 +24,8 @@ function load_view_from_knowgod(url, additional_css) {
       $(img).attr('src', 'http://knowgod.com' + $(img).attr('src'));
     });
 
+    // Exit link
+    $('a#exit_presentation').attr('href', url);
   });
 }
 
@@ -48,3 +50,9 @@ function get_session_data() {
   });
   return d;
 }
+
+$(document).ready(function() {
+  $('[behaviour="select-on-focus"]').on('focus', function() {
+    $(this).select();
+  });
+});
