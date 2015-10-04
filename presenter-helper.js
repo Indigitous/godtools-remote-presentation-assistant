@@ -42,15 +42,53 @@ Presenter.presenter_data = {
   presentations: {
     kgp: {
       title: 'Knowing God Personally',
-      num_pages: 12
+      num_pages: 12,
+      coaching_content: {
+        "0": "This is coaching content for step 0",
+        "1": "This is coaching content for step 1",
+        "2": "This is coaching content for step 2",
+        "3": "This is coaching content for step 3",
+        "4": "This is coaching content for step 4",
+        "5": "This is coaching content for step 5",
+        "6": "This is coaching content for step 6",
+        "7": "This is coaching content for step 7",
+        "8": "This is coaching content for step 8",
+        "9": "This is coaching content for step 9",
+        "10": "This is coaching content for step 10",
+        "11": "This is coaching content for step 11",
+        "12": "This is coaching content for step 12"  
+      }
     },
     fourlaws: {
       title: 'The Four Spiritual Laws',
-      num_pages: 10
+      num_pages: 10,
+      coaching_content: {
+        "0": "This is coaching content for step 0",
+        "1": "This is coaching content for step 1",
+        "2": "This is coaching content for step 2",
+        "3": "This is coaching content for step 3",
+        "4": "This is coaching content for step 4",
+        "5": "This is coaching content for step 5",
+        "6": "This is coaching content for step 6",
+        "7": "This is coaching content for step 7",
+        "8": "This is coaching content for step 8",
+        "9": "This is coaching content for step 9",
+        "10": "This is coaching content for step 10"  
+      }      
     },
     satisfied: {
       title: 'Satisfied?',
-      num_pages: 7
+      num_pages: 7,
+      coaching_content: {
+        "0": "This is coaching content for step 0",
+        "1": "This is coaching content for step 1",
+        "2": "This is coaching content for step 2",
+        "3": "This is coaching content for step 3",
+        "4": "This is coaching content for step 4",
+        "5": "This is coaching content for step 5",
+        "6": "This is coaching content for step 6",
+        "7": "This is coaching content for step 7"  
+      }
     }
   }
 }
@@ -81,13 +119,14 @@ Presenter.populate_dropdowns = function() {
 
 Presenter.initialize = function() {
   Presenter.current_presentation = Presenter.session_data.current_presentation || 'kgp';
-  Presenter.current_page = Presenter.session_data.current_page || '';
+  Presenter.current_page = Presenter.session_data.current_page || 0;
   Presenter.current_language = Presenter.session_data.current_language || 'en';
   Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
   Presenter.$language_dropdown = $('#language_list');
   Presenter.$presentation_dropdown = $('#presentation_list');
   Presenter.$presentation_link = $('#presentation_link');
   Presenter.$presentation_link.text(Presenter.session_data.knowgod_url);
+  Presenter.$coaching_content = $('#coaching_content');
 
   var $next_btn = $('#next_btn'),
     $prev_btn = $('#prev_btn'),
@@ -101,7 +140,7 @@ Presenter.initialize = function() {
     Presenter.current_language = Presenter.$language_dropdown.val();
     Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
     $next_btn.show();
-    Presenter.send_session();
+    Presenter.update();
   });
 
   $next_btn.on('click', function() {
@@ -112,7 +151,7 @@ Presenter.initialize = function() {
       if (Presenter.current_page == cur_pres.num_pages) {
         $next_btn.hide();
       }
-      Presenter.send_session();
+      Presenter.update();
     }
   });
 
@@ -123,9 +162,8 @@ Presenter.initialize = function() {
       $next_btn.show();
       if (Presenter.current_page == 0) {
         $prev_btn.hide();
-        Presenter.current_page = '';
       }
-      Presenter.send_session();
+      Presenter.update();
     }
   });
 
@@ -141,11 +179,17 @@ Presenter.initialize = function() {
   $('<iframe src="' + viewer_url + '" height="900" width="768" frameborder="0" allowfullscreen=""></iframe>').appendTo($('html'));  
 }
 
+Presenter.update = function() {
+  Presenter.$coaching_content.html(Presenter.current_presentation_data.coaching_content[Presenter.current_page]);
+  Presenter.send_session();
+}
+
 Presenter.send_session = function() {
-  var url = 'http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + Presenter.current_page;
+  var url_page = Presenter.current_page == 0 ? '' : Presenter.current_page,
+    url = 'http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + url_page;
 
   Presenter.session_data.current_presentation = Presenter.current_presentation || 'kgp';
-  Presenter.session_data.current_page = Presenter.current_page || '';
+  Presenter.session_data.current_page = Presenter.current_page || 0;
   Presenter.session_data.current_language = Presenter.current_language || 'en';
   Presenter.session_data.knowgod_url = url;
   send_data();
