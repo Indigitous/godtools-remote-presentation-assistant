@@ -128,59 +128,50 @@ Presenter.initialize = function() {
   Presenter.$presentation_link.text(Presenter.session_data.knowgod_url);
   Presenter.$coaching_content = $('#coaching_content');
 
-  var $next_btn = $('#next_btn'),
-    $prev_btn = $('#prev_btn'),
-    $load_btn = $('#load_btn');
+  Presenter.$next_btn = $('#next_btn');
+  Presenter.$prev_btn = $('#prev_btn');
+  Presenter.$load_btn = $('#load_btn');
 
   Presenter.populate_dropdowns();
 
-  $load_btn.on('click', function() {
-    Presenter.current_page = '';
-    Presenter.current_presentation = Presenter.$presentation_dropdown.val();
-    Presenter.current_language = Presenter.$language_dropdown.val();
-    Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
-    $next_btn.show();
-    Presenter.update();
-  });
+  Presenter.$presentation_dropdown.on('change', Presenter.load_guide);
+  Presenter.$language_dropdown.on('change', Presenter.load_guide);
 
-  $next_btn.on('click', function() {
+  Presenter.$next_btn.on('click', function() {
     var cur_pres = Presenter.current_presentation_data;
     if (Presenter.current_page < cur_pres.num_pages) {
       ++Presenter.current_page;
-      $prev_btn.show();
-      if (Presenter.current_page == cur_pres.num_pages) {
-        $next_btn.hide();
-      }
       Presenter.update();
     }
   });
 
-  $prev_btn.on('click', function() {
+  Presenter.$prev_btn.on('click', function() {
     var cur_pres = Presenter.current_presentation_data;
     if (Presenter.current_page > 0) {
       --Presenter.current_page;
-      $next_btn.show();
-      if (Presenter.current_page == 0) {
-        $prev_btn.hide();
-      }
       Presenter.update();
     }
   });
-
-  // Initialize next and previous buttons.
-  Presenter.current_page != '' && (Presenter.current_page < Presenter.current_presentation_data.num_pages) ? $next_btn.show() : $next_btn.hide();
-  Presenter.current_page > 0 ? $prev_btn.show() : $prev_btn.hide();
 
   viewer_url = viewer_url + '?session_id=' + session_id;
   $('#viewer_link').val(viewer_url);
 
   new Clipboard('#copy_viewer_link_button');
 
+  // Update the view based on the initialization and send the update to the viewer.
+  Presenter.update();
+
   $('#presentation_preview').html('<iframe src="' + viewer_url + '" class="embed-responsive-item" frameborder="0" allowfullscreen=""></iframe>');
 }
 
 Presenter.update = function() {
+  // Update coaching content
   Presenter.$coaching_content.html(Presenter.current_presentation_data.coaching_content[Presenter.current_page]);
+  
+  // Initialize next and previous buttons.
+  Presenter.current_page < Presenter.current_presentation_data.num_pages ? Presenter.$next_btn.show() : Presenter.$next_btn.hide();
+  Presenter.current_page > 0 ? Presenter.$prev_btn.show() : Presenter.$prev_btn.hide();
+
   Presenter.send_session();
 }
 
@@ -188,10 +179,21 @@ Presenter.send_session = function() {
   var url_page = Presenter.current_page == 0 ? '' : Presenter.current_page,
     url = 'http://knowgod.com/' + Presenter.current_language + '/' + Presenter.current_presentation + '/' + url_page;
 
+  // Update session object
   Presenter.session_data.current_presentation = Presenter.current_presentation || 'kgp';
   Presenter.session_data.current_page = Presenter.current_page || 0;
   Presenter.session_data.current_language = Presenter.current_language || 'en';
   Presenter.session_data.knowgod_url = url;
+
   send_data();
+  
   Presenter.$presentation_link.text(url);
+}
+
+Presenter.load_guide = function() {
+  Presenter.current_page = 0;
+  Presenter.current_presentation = Presenter.$presentation_dropdown.val();
+  Presenter.current_language = Presenter.$language_dropdown.val();
+  Presenter.current_presentation_data = Presenter.presenter_data.presentations[Presenter.current_presentation];
+  Presenter.update();
 }
