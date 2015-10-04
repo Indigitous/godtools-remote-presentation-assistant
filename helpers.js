@@ -24,6 +24,8 @@ function load_view_from_knowgod(url, additional_css) {
       $(img).attr('src', 'http://knowgod.com' + $(img).attr('src'));
     });
 
+    // Exit link
+    $('a#exit_presentation').attr('href', url);
   });
 }
 
