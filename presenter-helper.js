@@ -56,7 +56,7 @@ Presenter.presenter_data = {
         "9": "This is coaching content for step 9",
         "10": "This is coaching content for step 10",
         "11": "This is coaching content for step 11",
-        "12": "This is coaching content for step 12"  
+        "12": "This is coaching content for step 12"
       }
     },
     fourlaws: {
@@ -73,8 +73,8 @@ Presenter.presenter_data = {
         "7": "This is coaching content for step 7",
         "8": "This is coaching content for step 8",
         "9": "This is coaching content for step 9",
-        "10": "This is coaching content for step 10"  
-      }      
+        "10": "This is coaching content for step 10"
+      }
     },
     satisfied: {
       title: 'Satisfied?',
@@ -87,7 +87,7 @@ Presenter.presenter_data = {
         "4": "This is coaching content for step 4",
         "5": "This is coaching content for step 5",
         "6": "This is coaching content for step 6",
-        "7": "This is coaching content for step 7"  
+        "7": "This is coaching content for step 7"
       }
     }
   }
@@ -97,14 +97,14 @@ Presenter.populate_dropdowns = function() {
   var languages = Presenter.presenter_data.languages,
     presentations = _.pairs(Presenter.presenter_data.presentations),
     value, display;
-    
+
   languages.forEach(function(language) {
     value = language[0];
     display = language[1];
     Presenter.$language_dropdown
       .append($("<option></option>")
       .attr("value", value)
-      .text(display)); 
+      .text(display));
   });
 
   presentations.forEach(function(presentation) {
@@ -113,8 +113,8 @@ Presenter.populate_dropdowns = function() {
     Presenter.$presentation_dropdown
       .append($("<option></option>")
       .attr("value", value)
-      .text(display)); 
-  });  
+      .text(display));
+  });
 }
 
 Presenter.initialize = function() {
@@ -176,7 +176,7 @@ Presenter.initialize = function() {
 
   new Clipboard('#copy_viewer_link_button');
 
-  $('#presentation_preview').html('<iframe src="' + viewer_url + '" height="900" width="768" frameborder="0" allowfullscreen=""></iframe>');
+  $('#presentation_preview').html('<iframe src="' + viewer_url + '" class="embed-responsive-item" frameborder="0" allowfullscreen=""></iframe>');
 }
 
 Presenter.update = function() {
