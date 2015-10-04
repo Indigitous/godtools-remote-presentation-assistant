@@ -5,23 +5,71 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="firebase.js"></script>
     <script src="helpers.js"></script>
     <script src="presenter.js"></script>
     <script src="presenter-helper.js"></script>
   </head>
-  <select id="presentation_list"></select>
-  <select id="language_list"></select>
-  <br>
-  <span id="load_btn" class="btn btn-default">Load Presentation</span>
-  <span id="prev_btn" style="display:none;" class="btn btn-default">Prev</span>
-  <span id="next_btn" style="display:none;" class="btn btn-default">Next</span>
-  <div id="presentation_link"></div>
-  <input id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git">
-  <button id="copy_viewer_link_button" class="btn btn-default" data-clipboard-target="#viewer_link">
-    <img src="assets/clippy.svg" alt="Copy to clipboard">
-  </button>
-  <div id="coaching_content"></div>
+
+  <body>
+    <div class="container">
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">Presentation Controls</h3></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <label>Currently presenting:</label>
+              <select id="presentation_list"></select>
+              <select id="language_list"></select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span id="load_btn" class="btn btn-default">Load Presentation</span>
+              <span id="prev_btn" style="display:none;" class="btn btn-default">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                Prev
+              </span>
+              <span id="next_btn" style="display:none;" class="btn btn-primary">
+                Next
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              </span>
+            </div>
+          </div>
+          <div id="presentation_link" style="display:none;"></div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="viewer_link">Presentation Link:</label>
+              <div class="input-group">
+                <input class="form-control" id="viewer_link" value="https://github.com/zenorocha/clipboard.js.git">
+                <span class="input-group-btn">
+                  <button id="copy_viewer_link_button" class="btn btn-default" data-clipboard-target="#viewer_link">
+                    <img src="assets/clippy.svg" alt="Copy to clipboard">
+                  </button>
+                </span>
+              </div>
+              <span class="text-muted">Copy this link and send it to your friend!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div id="coaching_content">
+            Coaching content
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="presentation_preview">
+            Presentation preview
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
 </html>
